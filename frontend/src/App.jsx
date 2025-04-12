@@ -8,16 +8,16 @@ const sampleDataForPhotoListItem = {
     city: "Montreal",
     country: "Canada",
   },
-  imageSource: `${process.env.PUBLIC_URL}/Image-1-Regular.jpeg`,
+  imageSource: "/Image-1-Regular.jpeg",
   username: "Joe Example",
-  profile: `${process.env.PUBLIC_URL}/profile-1.jpg`,
+  profile: `/profile-1.jpg`,
 };
 
 // Note: Rendering a single component to build components in isolation
 const App = () => {
   return (
     <div className="App">
-      <PhotoListItem data={sampleDataForPhotoListItem} />
+      <PhotoListItem photo={sampleDataForPhotoListItem} />
     </div>
   );
 };
