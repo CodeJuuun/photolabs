@@ -1,12 +1,22 @@
+import { useState } from "react";
 import "../styles/PhotoListItem.scss";
+import PhotoFavButton from "./PhotoFavButton";
 
 const PhotoListItem = (props) => {
-  const { username, profile, imageSource, location } = props.photo;
+  const { username, profile, imageSource, location, id } = props.photo;
+  const { likedPhoto, setLikedPhoto } = useState(false);
+
+  const handleClick = () => {
+    console.log('clicking worked')
+    setLikedPhoto(!likedPhoto);
+  };
+
   return (
     <div className="photo-list__item">
       <img src={imageSource} alt="person holding phone" className="photo-list__image" />
       <div className="photo-list__user-details">
         <img src={profile} alt="image of a person" className="photo-list__user-profile" />
+        <PhotoFavButton likedPhoto={likedPhoto} handleClick={handleClick}/>
         <div className="photo-list__user-info">
           <p>{username}</p>
           <div className="photo-list__user-location">
