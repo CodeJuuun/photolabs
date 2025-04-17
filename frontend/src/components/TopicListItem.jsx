@@ -6,10 +6,10 @@ const sampleDataForTopicListItem = {
   label: "Nature",
 };
 
-const TopicListItem = ({ title }) => {
+const TopicListItem = (props) => {
   return (
     <div className="topic-list__item">
-      <span>{title}</span>
+      <span>{props.title}</span>
     </div>
   );
 };
