@@ -8,11 +8,11 @@ const PhotoListItem = (props) => {
 
   return (
     <div className="photo-list__item">
-        <PhotoFavButton />
+      <PhotoFavButton photoId={id} />
       <img src={imageSource} alt="person holding phone" className="photo-list__image" />
       <div className="photo-list__user-details">
         <img src={profile} alt="image of a person" className="photo-list__user-profile" />
-        
+
         <div className="photo-list__user-info">
           <p>{username}</p>
           <div className="photo-list__user-location">
