@@ -1,6 +1,5 @@
 import "../styles/TopicList.scss";
 import TopicListItem from "./TopicListItem";
-import topics from "../mocks/topics"
 
 
 const TopicList = () => {
