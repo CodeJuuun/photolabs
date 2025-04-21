@@ -7,14 +7,23 @@ import photos from './mocks/photos';
 
 // Note: Rendering a single component to build components in isolation
 const App = () => {
-  const [favourite, setfavourite] = useState([]);
+  const [favouritePhotoIds, setFavouritePhotoIds] = useState([]);
+  
+  const toggleFavourite = (photoId) => {
+    setFavouritePhotoIds(prev =>
+      prev.includes(photoId)
+        ? prev.filter(id => id !== photoId)
+        : [...prev, photoId]
+    );
+  };
+
   return (
     <div className="App">
       <HomeRoute
         photos={photos}
         topics={topics}
-        favourite={favourite}
-        setfavourite={setfavourite}
+        favouritePhotoIds={favouritePhotoIds}
+        toggleFavourite={toggleFavourite}
       />
     </div>
   );
