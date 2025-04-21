@@ -7,14 +7,14 @@ import photos from './mocks/photos';
 
 // Note: Rendering a single component to build components in isolation
 const App = () => {
-  const [favPhoto, setFavPhoto] = useState([]);
+  const [favourite, setfavourite] = useState([]);
   return (
     <div className="App">
       <HomeRoute
         photos={photos}
         topics={topics}
-        favPhoto={favPhoto}
-        setFavPhoto={setFavPhoto}
+        favourite={favourite}
+        setfavourite={setfavourite}
       />
     </div>
   );
