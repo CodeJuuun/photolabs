@@ -3,14 +3,14 @@ import './App.scss';
 import HomeRoute from './routes/HomeRoute';
 import topics from './mocks/topics';
 import photos from './mocks/photos';
-
+import PhotoDetailsModal from './routes/PhotoDetailsModal';
 
 // Note: Rendering a single component to build components in isolation
 const App = () => {
   const [favouritePhotoIds, setFavouritePhotoIds] = useState([]);
   const [selectedPhoto, setSelectedPhoto] = useState(null);
   const [isModalOpen, setIsModelOpen] = useState(false);
-  
+
   const openModal = (photo) => {
     setSelectedPhoto(photo);
     setIsModelOpen(true);
@@ -18,8 +18,8 @@ const App = () => {
 
   const closeModal = () => {
     setIsModelOpen(false);
-    setSelectedPhoto(null)
-  }
+    setSelectedPhoto(null);
+  };
 
   const toggleFavourite = (photoId) => {
     setFavouritePhotoIds(prev =>
@@ -36,7 +36,14 @@ const App = () => {
         topics={topics}
         favouritePhotoIds={favouritePhotoIds}
         toggleFavourite={toggleFavourite}
+        openModal={openModal}
       />
+      {isModalOpen && selectedPhoto && (
+        <PhotoDetailsModal
+          photo={selectedPhoto}
+          closeModal={closeModal}
+        />
+      )}
     </div>
   );
 };
