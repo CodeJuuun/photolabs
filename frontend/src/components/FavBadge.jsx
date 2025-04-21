@@ -6,7 +6,7 @@ const FavBadge = ({ isFavPhotoExist }) => {
   return (
     <div className='fav-badge'>
       {/* {isFavPhotoExist && <FavIcon displayAlert={true}/>} */}
-      <FavIcon displayAlert={!!isFavPhotoExist} selected={!!isFavPhotoExist} />
+      <FavIcon displayAlert={isFavPhotoExist ? true : false} selected={isFavPhotoExist ? true : false} />
     </div>
   ) 
 };
