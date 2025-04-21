@@ -2,11 +2,14 @@ import { useState } from "react";
 import "../styles/PhotoListItem.scss";
 import PhotoFavButton from "./PhotoFavButton";
 
-const PhotoListItem = ({ photo, isFavourite, toggleFavourite }) => {
+const PhotoListItem = ({ photo, isFavourite, toggleFavourite, openModal }) => {
   const { username, profile, imageSource, location, id } = photo;
 
+    const handleOpenModal = () => {
+      openModal(photo)
+    }
   return (
-    <div className="photo-list__item">
+    <div className="photo-list__item" onClick={handleOpenModal}>
       <PhotoFavButton
         isFavourite={isFavourite}
         onClick={() => {
