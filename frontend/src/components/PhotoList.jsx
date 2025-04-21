@@ -2,7 +2,7 @@ import React from "react";
 import "../styles/PhotoList.scss";
 import PhotoListItem from "./PhotoListItem";
 
-const PhotoList = ({ photos, favPhoto, setFavPhoto }) => {
+const PhotoList = ({ photos }) => {
   return (
     <ul className="photo-list">
       {photos.map(photo => (
@@ -15,8 +15,6 @@ const PhotoList = ({ photos, favPhoto, setFavPhoto }) => {
             profile: photo.user.profile,
             location: photo.location,
           }}
-          isFavourited={favPhoto.includes(photo.id)}
-          toggleFavourite={setFavPhoto}
         />
       ))}
     </ul>

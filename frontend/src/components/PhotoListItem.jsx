@@ -8,9 +8,7 @@ const PhotoListItem = (props) => {
 
   return (
     <div className="photo-list__item">
-      <PhotoFavButton photoId={id}
-        IsFavourited={props.IsFavourited}
-        toggleFavourite={toggleFavourite} />
+      <PhotoFavButton photoId={id} />
       <img src={imageSource} alt="person holding phone" className="photo-list__image" />
       <div className="photo-list__user-details">
         <img src={profile} alt="image of a person" className="photo-list__user-profile" />
