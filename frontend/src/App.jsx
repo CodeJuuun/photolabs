@@ -8,6 +8,7 @@ import photos from './mocks/photos';
 // Note: Rendering a single component to build components in isolation
 const App = () => {
   const [favouritePhotoIds, setFavouritePhotoIds] = useState([]);
+  const [blankModal, setBlankModal] = useState(false)
   
   const toggleFavourite = (photoId) => {
     setFavouritePhotoIds(prev =>
