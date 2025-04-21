@@ -1,8 +1,5 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './App.scss';
-import PhotoList from './components/PhotoList';
-import TopicList from './components/TopicList';
-import TopNavigation from './components/TopNavigationBar';
 import HomeRoute from './routes/HomeRoute';
 import topics from './mocks/topics';
 import photos from './mocks/photos';
@@ -10,11 +7,15 @@ import photos from './mocks/photos';
 
 // Note: Rendering a single component to build components in isolation
 const App = () => {
+  const [favPhoto, setFavPhoto] = useState([]);
   return (
     <div className="App">
       <HomeRoute
         photos={photos}
-        topics={topics} />
+        topics={topics}
+        favPhoto={favPhoto}
+        setFavPhoto={setFavPhoto}
+      />
     </div>
   );
 };

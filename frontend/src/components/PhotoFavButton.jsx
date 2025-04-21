@@ -9,7 +9,7 @@ const PhotoFavButton = ({ photoId }) => {
 
   const handleClick = () => {
     setFavouritePhoto(prevState => !prevState);
-    console.log(`Toggledd fav for photo ID: ${photoId}`)
+    // console.log(`Toggledd fav for photo ID: ${photoId}`)
   };
 
   return (
