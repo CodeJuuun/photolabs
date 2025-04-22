@@ -7,7 +7,7 @@ import PhotoDetailsModal from './routes/PhotoDetailsModal';
 
 // Note: Rendering a single component to build components in isolation
 const App = () => {
-  const [favouritePhotoIds, setFavouritePhotoIds] = useState([]);
+  const [likedPhotos, setLikedPhotos] = useState([]);
   const [selectedPhoto, setSelectedPhoto] = useState(null);
   const [isModalOpen, setIsModelOpen] = useState(false);
 
@@ -22,7 +22,7 @@ const App = () => {
   };
 
   const toggleFavourite = (photoId) => {
-    setFavouritePhotoIds(prev =>
+    setLikedPhotos(prev =>
       prev.includes(photoId)
         ? prev.filter(id => id !== photoId)
         : [...prev, photoId]
@@ -34,7 +34,7 @@ const App = () => {
       <HomeRoute
         photos={photos}
         topics={topics}
-        favouritePhotoIds={favouritePhotoIds}
+        likedPhotos={likedPhotos}
         toggleFavourite={toggleFavourite}
         openModal={openModal}
       />

@@ -11,7 +11,7 @@ const PhotoDetailsModal = ({ closeModal, photo }) => {
         </button>
       </div>
       <div className='photo-details-modal__image'>
-        <img src={photo} />
+        <img src={photo} alt={photo.location} />
       </div>
       <div className='photo-details-modal__images'>
 
