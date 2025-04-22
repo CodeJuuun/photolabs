@@ -4,7 +4,7 @@ import PhotoFavButton from "./PhotoFavButton";
 
 const PhotoListItem = ({ photo, isFavourite, toggleFavourite, openModal }) => {
   const { username, profile, imageSource, location, id } = photo;
-
+  // console.log(imageSource)
   const handleOpenModal = () => {
     openModal(photo);
   };
@@ -18,10 +18,15 @@ const PhotoListItem = ({ photo, isFavourite, toggleFavourite, openModal }) => {
         }}
       />
 
-      <img src={imageSource} alt="person holding phone" 
-      className="photo-list__image" />
+      <img
+        src={imageSource}
+        alt="person holding phone"
+        className="photo-list__image" />
       <div className="photo-list__user-details">
-        <img src={profile} alt="image of a person" className="photo-list__user-profile" />
+        <img
+          src={profile}
+          alt="image of a person"
+          className="photo-list__user-profile" />
 
         <div className="photo-list__user-info">
           <p>{username}</p>
