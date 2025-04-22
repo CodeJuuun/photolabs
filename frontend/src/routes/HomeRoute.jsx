@@ -12,6 +12,8 @@ const HomeRoute = ({ photos, topics, likedPhotos, toggleFavourite, openModal }) 
         toggleFavourite={toggleFavourite}
         openModal={openModal}
       />
+
+      
     </div>
   );
 };

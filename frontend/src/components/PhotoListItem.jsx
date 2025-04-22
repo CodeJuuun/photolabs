@@ -5,18 +5,21 @@ import PhotoFavButton from "./PhotoFavButton";
 const PhotoListItem = ({ photo, isFavourite, toggleFavourite, openModal }) => {
   const { username, profile, imageSource, location, id } = photo;
 
-    const handleOpenModal = () => {
-      openModal(photo)
-    }
+  const handleOpenModal = () => {
+    openModal(photo);
+  };
   return (
     <div className="photo-list__item" onClick={handleOpenModal}>
       <PhotoFavButton
         isFavourite={isFavourite}
         onClick={(e) => {
           e.stopPropagation();
-          toggleFavourite(id)}}
+          toggleFavourite(id);
+        }}
       />
-      <img src={imageSource} alt="person holding phone" className="photo-list__image" />
+
+      <img src={imageSource} alt="person holding phone" 
+      className="photo-list__image" />
       <div className="photo-list__user-details">
         <img src={profile} alt="image of a person" className="photo-list__user-profile" />
 
