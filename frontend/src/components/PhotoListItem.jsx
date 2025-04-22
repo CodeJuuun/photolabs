@@ -12,8 +12,8 @@ const PhotoListItem = ({ photo, isFavourite, toggleFavourite, openModal }) => {
     <div className="photo-list__item" onClick={handleOpenModal}>
       <PhotoFavButton
         isFavourite={isFavourite}
-        onClick={() => {
-          console.log(`Toggling fav for photo ID ${id}`)
+        onClick={(e) => {
+          e.stopPropagation();
           toggleFavourite(id)}}
       />
       <img src={imageSource} alt="person holding phone" className="photo-list__image" />
