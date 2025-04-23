@@ -1,7 +1,7 @@
 import '../styles/PhotoDetailsModal.scss';
 import closeSymbol from '../assets/closeSymbol.svg';
 import PhotoList from '../components/PhotoList';
-import PhotoListItem from '../components/PhotoListItem';
+import PhotoFavButton from '../components/PhotoFavButton';
 // photo = currently selected photo, photos = entire photo dataset
 const PhotoDetailsModal = ({ closeModal, photo, photos, likedPhotos, toggleFavourite }) => {
   // handling unselected photo
@@ -25,11 +25,17 @@ const PhotoDetailsModal = ({ closeModal, photo, photos, likedPhotos, toggleFavou
         <button
           className="photo-details-modal__close-button"
           onClick={closeModal}>
+
           <img
             src={closeSymbol}
             alt="close symbol" />
         </button>
-
+        <div className='photo-details-modal__image-wrapper'>
+          <PhotoFavButton
+            isFavourite={likedPhotos.includes(photo.id)}
+            onClick={() => toggleFavourite(photo.id)}
+          />
+        </div>
         <img
           src={photo.imageSource}
           alt="selected"
