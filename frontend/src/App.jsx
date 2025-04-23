@@ -24,9 +24,9 @@ const App = () => {
         topics={topics}
         likedPhotos={state.likedPhotos}
         toggleFavourite={updateToFavPhotoIds}
-        openModal={onPhotoSelect}
+        onPhotoSelect={onPhotoSelect}
       />
-      {isModalOpen && selectedPhoto && (
+      {state.isModalOpen && state.selectedPhoto && (
         <PhotoDetailsModal
           photo={state.selectedPhoto}
           closeModal={onClosePhotoDetailsModal}

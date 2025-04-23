@@ -2,22 +2,22 @@ import { useState } from "react";
 
 const useApplicationData = () => {
 
-  const state = { likedPhotos, selectedPhoto, isModalOpen };
   const [likedPhotos, setLikedPhotos] = useState([]);
   const [selectedPhoto, setSelectedPhoto] = useState(null);
   const [isModalOpen, setIsModelOpen] = useState(false);
-
-  const OnPhotoSelect = (photo) => {
+  const state = { likedPhotos, selectedPhoto, isModalOpen };
+  
+  const onPhotoSelect = (photo) => {
     setSelectedPhoto(photo);
     setIsModelOpen(true);
   };
 
-  const OnClosePhotoDetailsModal = () => {
+  const onClosePhotoDetailsModal = () => {
     setIsModelOpen(false);
     setSelectedPhoto(null);
   };
 
-  const updateToFavPhotosIds = (photoId) => {
+  const updateToFavPhotoIds = (photoId) => {
     setLikedPhotos(prev =>
       prev.includes(photoId)
         ? prev.filter(id => id !== photoId)
@@ -27,9 +27,9 @@ const useApplicationData = () => {
 
   return {
     state,
-    OnPhotoSelect,
-    updateToFavPhotosIds,
-    OnClosePhotoDetailsModal,
+    onPhotoSelect,
+    updateToFavPhotoIds,
+    onClosePhotoDetailsModal,
   };
 
 };

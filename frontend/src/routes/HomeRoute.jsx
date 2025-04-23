@@ -2,7 +2,7 @@ import PhotoList from '../components/PhotoList';
 import TopNavigation from '../components/TopNavigationBar';
 import '../styles/HomeRoute.scss';
 
-const HomeRoute = ({ photos, topics, likedPhotos, toggleFavourite, openModal }) => {
+const HomeRoute = ({ photos, topics, likedPhotos, toggleFavourite, onPhotoSelect }) => {
   return (
     <div className="home-route">
       <TopNavigation topics={topics} isFavPhotoExist={likedPhotos.length > 0} />
@@ -10,7 +10,7 @@ const HomeRoute = ({ photos, topics, likedPhotos, toggleFavourite, openModal }) 
         photos={photos}
         likedPhotos={likedPhotos}
         toggleFavourite={toggleFavourite}
-        openModal={openModal}
+        onPhotoSelect={onPhotoSelect}
       />
 
       
