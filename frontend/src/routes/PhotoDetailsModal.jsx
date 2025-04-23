@@ -10,36 +10,58 @@ const PhotoDetailsModal = ({ closeModal, photo, photos, likedPhotos, toggleFavou
   }
 
   //helper function to filter photos based on similar photo
-  const similarPhotos = (photo, photos) => {
-    if (!photos) return [];
-    return photos.filter(p => p.location === photo.location && p.id !== photo.id);
+  const getSimilarPhotos = () => {
+    return photos.filter(p =>
+      p.location.city === photo.location.city &&
+      p.location.country === photo.location.country &&
+      p.id !== photo.id
+    );
   };
 
   return (
     <>
-      <div className="photo-details-modal">
-        <button className="photo-details-modal__close-button" onClick={closeModal}>
-          <img src={closeSymbol} alt="close symbol" />
+      <div
+        className="photo-details-modal">
+        <button
+          className="photo-details-modal__close-button"
+          onClick={closeModal}>
+          <img
+            src={closeSymbol}
+            alt="close symbol" />
         </button>
 
-        <img src={photo.imageSource} alt="" className='photo-details-modal__image' />
+        <img
+          src={photo.imageSource}
+          alt="selected"
+          className='photo-details-modal__image' />
 
-        <div className='photo-details-modal__images'>
-          {similarPhotos(photo, photos).map(similarPhoto => (
-            <PhotoListItem
-              key={similarPhoto.id}
-              photo={{
-                id: similarPhoto.id,
-                username: similarPhoto.user.username,
-                imageSource: similarPhoto.urls.regular,
-                profile: similarPhoto.user.profile,
-                location: similarPhoto.location,
-              }}
-              isFavourite={likedPhotos.includes(similarPhoto.id)}
-              toggleFavourite={toggleFavourite}
-              openModal={openModal}
+        <div
+          className="photo-details-modal__top-bar">
+          <div
+            className="photo-details-modal__photographer-details">
+            <img
+              src={photo.profile}
+              alt="Photographer"
+              className="photo-details-modal__photographer-profile"
             />
-          ))}
+            <div
+              className="photo-details-modal__photographer-info">
+              <div>{photo.username}</div>
+              <div
+                className="photo-details-modal__photographer-location">
+                {photo.location.city}, {photo.location.country}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="photo-details-modal__header">Similar Photos</div>
+        <div className="photo-details-modal__images">
+          <PhotoList
+            photos={getSimilarPhotos()}
+            likedPhotos={likedPhotos}
+            toggleFavourite={toggleFavourite}
+          />
         </div>
       </div>
     </>
