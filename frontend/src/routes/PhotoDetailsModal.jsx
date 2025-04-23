@@ -30,16 +30,19 @@ const PhotoDetailsModal = ({ closeModal, photo, photos, likedPhotos, toggleFavou
             src={closeSymbol}
             alt="close symbol" />
         </button>
-        <div className='photo-details-modal__image-wrapper'>
-          <PhotoFavButton
-            isFavourite={likedPhotos.includes(photo.id)}
-            onClick={() => toggleFavourite(photo.id)}
-          />
+        <div className="photo-details-modal__image-container">
+          <div className="photo-details-modal__image-wrapper">
+            <PhotoFavButton
+              isFavourite={likedPhotos.includes(photo.id)}
+              onClick={() => toggleFavourite(photo.id)}
+            />
+            <img
+              src={photo.imageSource}
+              alt="selected"
+              className="photo-details-modal__image"
+            />
+          </div>
         </div>
-        <img
-          src={photo.imageSource}
-          alt="selected"
-          className='photo-details-modal__image' />
 
         <div
           className="photo-details-modal__top-bar">
