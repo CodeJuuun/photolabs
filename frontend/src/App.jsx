@@ -33,6 +33,7 @@ const App = () => {
           photos={photos}
           likedPhotos={state.likedPhotos}
           toggleFavourite={updateToFavPhotoIds}
+          onPhotoSelect={onPhotoSelect}
         />
       )}
     </div>

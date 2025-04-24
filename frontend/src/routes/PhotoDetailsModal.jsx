@@ -3,7 +3,7 @@ import closeSymbol from '../assets/closeSymbol.svg';
 import PhotoList from '../components/PhotoList';
 import PhotoFavButton from '../components/PhotoFavButton';
 // photo = currently selected photo, photos = entire photo dataset
-const PhotoDetailsModal = ({ closeModal, photo, photos, likedPhotos, toggleFavourite }) => {
+const PhotoDetailsModal = ({ closeModal, photo, photos, likedPhotos, toggleFavourite, onPhotoSelect }) => {
   // handling unselected photo
   if (!photo) {
     return null;
@@ -70,6 +70,7 @@ const PhotoDetailsModal = ({ closeModal, photo, photos, likedPhotos, toggleFavou
             photos={getSimilarPhotos()}
             likedPhotos={likedPhotos}
             toggleFavourite={toggleFavourite}
+            onPhotoSelect={onPhotoSelect}
           />
         </div>
       </div>
