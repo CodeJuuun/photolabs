@@ -1,28 +1,82 @@
-import { useState } from "react";
+import { useReducer } from "react";
+//-----------------------------------------------------------------------------------------
+const initialState = {
+  likedPhotos: [],
+  selectedPhoto: null,
+  isModalOpen: false
+};
+//-----------------------------------------------------------------------------------------
+export const ACTIONS = {
+  FAV_PHOTO_ADDED: 'FAV_PHOTO_ADDED',
+  FAV_PHOTO_REMOVED: 'FAV_PHOTO_REMOVED',
+  SET_PHOTO_DATA: 'SET_PHOTO_DATA',
+  SET_TOPIC_DATA: 'SET_TOPIC_DATA',
+  SELECT_PHOTO: 'SELECT_PHOTO',
+  DISPLAY_PHOTO_DETAILS: 'DISPLAY_PHOTO_DETAILS'
+};
+//-----------------------------------------------------------------------------------------
+function reducer(state, action) {
+  switch (action.type) {
+    case ACTIONS.FAV_PHOTO_ADDED:
+      return {
+        ...state,
+        likedPhotos: [...state.likedPhotos, action.payload.id]
+      };
 
+    case ACTIONS.FAV_PHOTO_REMOVED:
+      return {
+        ...state,
+        likedPhotos: state.likedPhotos.filter(id => id !== action.payload.id)
+      };
+
+    case ACTIONS.SELECT_PHOTO:
+      return {
+        ...state,
+        selectedPhoto: action.payload.photo,
+        isModalOpen: true
+      };
+
+    case ACTIONS.DISPLAY_PHOTO_DETAILS:
+      return {
+        isModalOpen: action.payload.isOpen,
+        selectedPhoto: action.payload.isOpen ? state.selectedPhoto : null
+      };
+
+    default:
+      throw new Error(`Action type is not supported: ${action.type}`);
+  }
+}
+
+//-----------------------------------------------------------------------------------------
 const useApplicationData = () => {
+  const [state, dispatch] = useReducer(reducer, initialState);
 
-  const [likedPhotos, setLikedPhotos] = useState([]);
-  const [selectedPhoto, setSelectedPhoto] = useState(null);
-  const [isModalOpen, setIsModelOpen] = useState(false);
-  const state = { likedPhotos, selectedPhoto, isModalOpen };
-  
   const onPhotoSelect = (photo) => {
-    setSelectedPhoto(photo);
-    setIsModelOpen(true);
+    dispatch({
+      type: ACTIONS.SELECT_PHOTO,
+      payload: { photo }
+    });
   };
 
   const onClosePhotoDetailsModal = () => {
-    setIsModelOpen(false);
-    setSelectedPhoto(null);
+    dispatch({
+      type: ACTIONS.SELECT_PHOTO,
+      payload: { isOpen: false }
+    });
   };
 
   const updateToFavPhotoIds = (photoId) => {
-    setLikedPhotos(prev =>
-      prev.includes(photoId)
-        ? prev.filter(id => id !== photoId)
-        : [...prev, photoId]
-    );
+    if (state.likedPhotos.includes(photoId)) {
+      dispatch({
+        type: ACTIONS.FAV_PHOTO_REMOVED,
+        payload: { id: photoId }
+      });
+    } else {
+      dispatch({
+        type: ACTIONS.FAV_PHOTO_ADDED,
+        payload: { id: photoId }
+      });
+    }
   };
 
   return {
