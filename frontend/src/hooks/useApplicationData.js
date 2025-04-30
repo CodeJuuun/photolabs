@@ -48,7 +48,8 @@ function reducer(state, action) {
 
     case ACTIONS.SET_PHOTO_DATA:
       return {
-        ...state, photoData: action.payload
+        ...state, 
+        photoData: action.payload.photos
       }
 
     default:
@@ -64,12 +65,12 @@ const useApplicationData = () => {
   useEffect(() => {
     fetch("http://localhost:8001/api/photos")
       .then(res => res.json())
-      .then(data => {
-        console.log("Photo data fetched successfully");
-        dispatch({
-          type: ACTIONS.SET_PHOTO_DATA,
-          payload: { photos: data }
-        });
+      .then(data => dispatch({
+        type: ACTIONS.SET_PHOTO_DATA,
+        payload: { photos: data }
+      }))
+      .catch(error => {
+        console.error("Error fetching photo data:", error);
       });
   }, []);
 
