@@ -49,13 +49,13 @@ function reducer(state, action) {
 
     case ACTIONS.SET_PHOTO_DATA:
       return {
-        ...state, 
+        ...state,
         photoData: action.payload.photos
       };
 
     case ACTIONS.SET_TOPIC_DATA:
       return {
-        ...state, 
+        ...state,
         topicData: action.payload.topics
       };
 
@@ -92,11 +92,11 @@ const useApplicationData = () => {
       .then(res => res.json())
       .then(data =>
         dispatch({
-          type:ACTIONS.SET_TOPIC_DATA,
-          payload: {topics :data}
+          type: ACTIONS.SET_TOPIC_DATA,
+          payload: { topics: data }
         })
-      )
-  }, [])
+      );
+  }, []);
 
   const onPhotoSelect = (photo) => {
     dispatch({
@@ -127,8 +127,17 @@ const useApplicationData = () => {
   };
 
   const onLoadTopic = (topicId) => {
-  
-  }
+    fetch("http://localhost:8001/api/topics/:topic_id/photos")
+      .then((res) => {
+        res.json();
+      })
+      .then((data) => {
+        dispatch({
+          type: ACTIONS.SET_PHOTO_BY_TOPIC,
+          payload: { photos: data }
+        });
+      });
+  };
 
   return {
     state,
