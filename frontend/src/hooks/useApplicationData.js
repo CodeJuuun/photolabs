@@ -50,6 +50,12 @@ function reducer(state, action) {
       return {
         ...state, 
         photoData: action.payload.photos
+      };
+
+    case ACTIONS.SET_TOPIC_DATA:
+      return {
+        ...state, 
+        topicData: action.payload.topics
       }
 
     default:
@@ -73,6 +79,17 @@ const useApplicationData = () => {
         console.error("Error fetching photo data:", error);
       });
   }, []);
+
+  useEffect(() => {
+    fetch("http://localhost:8001/api/topics")
+      .then(res => res.json())
+      .then(data =>
+        dispatch({
+          type:ACTIONS.SET_TOPIC_DATA,
+          payload: {topics :data}
+        })
+      )
+  }, [])
 
   const onPhotoSelect = (photo) => {
     dispatch({
