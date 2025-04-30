@@ -14,7 +14,8 @@ export const ACTIONS = {
   SET_PHOTO_DATA: 'SET_PHOTO_DATA',
   SET_TOPIC_DATA: 'SET_TOPIC_DATA',
   SELECT_PHOTO: 'SELECT_PHOTO',
-  DISPLAY_PHOTO_DETAILS: 'DISPLAY_PHOTO_DETAILS'
+  DISPLAY_PHOTO_DETAILS: 'DISPLAY_PHOTO_DETAILS',
+  SET_PHOTO_BY_TOPIC: 'SET_PHOTO_BY_TOPIC',
 };
 //-----------------------------------------------------------------------------------------
 function reducer(state, action) {
@@ -56,7 +57,13 @@ function reducer(state, action) {
       return {
         ...state, 
         topicData: action.payload.topics
-      }
+      };
+
+    case ACTIONS.SET_PHOTO_BY_TOPIC:
+      return {
+        ...state,
+        photoData: action.payload.photos
+      };
 
     default:
       throw new Error(`Action type is not supported: ${action.type}`);
@@ -118,6 +125,10 @@ const useApplicationData = () => {
       });
     }
   };
+
+  const onLoadTopic = (topicId) => {
+  
+  }
 
   return {
     state,
