@@ -23,6 +23,7 @@ const App = () => {
         likedPhotos={state.likedPhotos}
         toggleFavourite={updateToFavPhotoIds}
         onPhotoSelect={onPhotoSelect}
+        onLoadTopic={onLoadTopic}
       />
       {state.isModalOpen && state.selectedPhoto && (
         <PhotoDetailsModal

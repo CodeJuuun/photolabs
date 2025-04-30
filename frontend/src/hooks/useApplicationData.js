@@ -144,6 +144,7 @@ const useApplicationData = () => {
     onPhotoSelect,
     updateToFavPhotoIds,
     onClosePhotoDetailsModal,
+    onLoadTopic
   };
 
 };
