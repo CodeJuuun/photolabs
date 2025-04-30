@@ -1,9 +1,11 @@
-import { useReducer } from "react";
+import { useReducer, useEffect } from "react";
 //-----------------------------------------------------------------------------------------
 const initialState = {
   likedPhotos: [],
   selectedPhoto: null,
-  isModalOpen: false
+  isModalOpen: false,
+  photoData: [],
+  topicData: []
 };
 //-----------------------------------------------------------------------------------------
 export const ACTIONS = {
@@ -16,6 +18,8 @@ export const ACTIONS = {
 };
 //-----------------------------------------------------------------------------------------
 function reducer(state, action) {
+
+
   switch (action.type) {
     case ACTIONS.FAV_PHOTO_ADDED:
       return {
@@ -42,6 +46,11 @@ function reducer(state, action) {
         selectedPhoto: action.payload.isOpen ? state.selectedPhoto : null
       };
 
+    case ACTIONS.SET_PHOTO_DATA:
+      return {
+        ...state, photoData: action.payload
+      }
+
     default:
       throw new Error(`Action type is not supported: ${action.type}`);
   }
@@ -50,6 +59,19 @@ function reducer(state, action) {
 //-----------------------------------------------------------------------------------------
 const useApplicationData = () => {
   const [state, dispatch] = useReducer(reducer, initialState);
+
+  // Fetch photo data from api endpoint and store it in state
+  useEffect(() => {
+    fetch("http://localhost:8001/api/photos")
+      .then(res => res.json())
+      .then(data => {
+        console.log("Photo data fetched successfully");
+        dispatch({
+          type: ACTIONS.SET_PHOTO_DATA,
+          payload: { photos: data }
+        });
+      });
+  }, []);
 
   const onPhotoSelect = (photo) => {
     dispatch({
