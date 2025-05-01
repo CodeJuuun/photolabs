@@ -3,7 +3,14 @@ import closeSymbol from '../assets/closeSymbol.svg';
 import PhotoList from '../components/PhotoList';
 import PhotoFavButton from '../components/PhotoFavButton';
 // photo = currently selected photo, photos = entire photo dataset
-const PhotoDetailsModal = ({ closeModal, photo, photos, likedPhotos, toggleFavourite, onPhotoSelect }) => {
+const PhotoDetailsModal = ({
+  closeModal,
+  photo,
+  photos,
+  likedPhotos,
+  toggleFavourite,
+  onPhotoSelect
+}) => {
   // handling unselected photo
   if (!photo) {
     return null;
@@ -11,9 +18,10 @@ const PhotoDetailsModal = ({ closeModal, photo, photos, likedPhotos, toggleFavou
 
   //helper function to filter photos based on similar photo
   const getSimilarPhotos = () => {
+    const { city, country } = photo.location;
     return photos.filter(p =>
-      p.location.city === photo.location.city &&
-      p.location.country === photo.location.country &&
+      p.location.city === city &&
+      p.location.country === country &&
       p.id !== photo.id
     );
   };
