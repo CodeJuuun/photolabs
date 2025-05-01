@@ -35,7 +35,10 @@ const useApplicationData = () => {
         dispatch({
           type: ACTIONS.SET_TOPIC_DATA,
           payload: { topics: data }
-        }));
+        }))
+      .catch(error => {
+        console.error("Error in fetching topic data photos:", error);
+      });
   }, []);
   //-----------------------------------------
   // Function to select photo and open modal
