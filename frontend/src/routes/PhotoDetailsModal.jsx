@@ -45,7 +45,7 @@ const PhotoDetailsModal = ({
               onClick={() => toggleFavourite(photo.id)}
             />
             <img
-              src={photo.imageSource}
+              src={photo?.imageSource}
               alt="selected"
               className="photo-details-modal__image"
             />
@@ -57,7 +57,7 @@ const PhotoDetailsModal = ({
           <div
             className="photo-details-modal__photographer-details">
             <img
-              src={photo.profile}
+              src={photo?.profile}
               alt="Photographer"
               className="photo-details-modal__photographer-profile"
             />
