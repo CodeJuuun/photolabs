@@ -13,7 +13,7 @@ const initialState = {
 const useApplicationData = () => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
-  // Fetch photo data from api endpoint and store it in state
+  // Fetch photo data from api endpoint and store it in the state
   useEffect(() => {
     fetch("http://localhost:8001/api/photos")
       .then(res => res.json())
@@ -24,8 +24,10 @@ const useApplicationData = () => {
       .catch(error => {
         console.error("Error fetching photo data:", error);
       });
-  }, []);
+  }, []); // empty array will ensure to only run this effect once the component mounts
 
+
+  // Fetch  topic data from api and store it in state
   useEffect(() => {
     fetch("http://localhost:8001/api/topics")
       .then(res => res.json())
@@ -33,24 +35,26 @@ const useApplicationData = () => {
         dispatch({
           type: ACTIONS.SET_TOPIC_DATA,
           payload: { topics: data }
-        })
-      );
+        }));
   }, []);
-
+  //-----------------------------------------
+  // Function to select photo and open modal
   const onPhotoSelect = (photo) => {
     dispatch({
       type: ACTIONS.SELECT_PHOTO,
       payload: { photo }
     });
   };
-
+  //-----------------------------------------
+  // Function to close the modal
   const onClosePhotoDetailsModal = () => {
     dispatch({
       type: ACTIONS.SELECT_PHOTO,
       payload: { isOpen: false }
     });
   };
-
+  //-----------------------------------------
+  // Function to toggle liked status or un-like it (will add/remove from favourites)
   const updateToFavPhotoIds = (photoId) => {
     if (state.likedPhotos.includes(photoId)) {
       dispatch({
@@ -64,7 +68,8 @@ const useApplicationData = () => {
       });
     }
   };
-
+  //-----------------------------------------
+  // Upon clicking topic, will load all related photos to that topic
   const onLoadTopic = (topicId) => {
     fetch(`http://localhost:8001/api/topics/${topicId}/photos`)
       .then((res) => res.json())
