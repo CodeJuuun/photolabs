@@ -4,7 +4,7 @@ Photolabs is a single-page application that uses React to allow users to view ph
 
 ## Final Product
 
-
+!["Screenshot of front page with liked photos"](https://github.com/CodeJuuun/photolabs/blob/main/docs/photolabs1.png?raw=true)
 ## Setup
 
 [Backend Setup Instructions](/backend/)
