@@ -8,7 +8,7 @@ import useApplicationData from './hooks/useApplicationData';
 const App = () => {
 
   const {
-    state,
+    state: { photoData, topicData, likedPhotos, selectedPhoto, isModalOpen},
     onPhotoSelect,
     updateToFavPhotoIds,
     onLoadTopic,
@@ -18,19 +18,19 @@ const App = () => {
   return (
     <div className="App">
       <HomeRoute
-        photos={state.photoData}
-        topics={state.topicData}
-        likedPhotos={state.likedPhotos}
+        photos={photoData}
+        topics={topicData}
+        likedPhotos={likedPhotos}
         toggleFavourite={updateToFavPhotoIds}
         onPhotoSelect={onPhotoSelect}
         onLoadTopic={onLoadTopic}
       />
-      {state.isModalOpen && state.selectedPhoto && (
+      {isModalOpen && selectedPhoto && (
         <PhotoDetailsModal
-          photo={state.selectedPhoto}
+          photo={selectedPhoto}
           closeModal={onClosePhotoDetailsModal}
-          photos={state.photoData}
-          likedPhotos={state.likedPhotos}
+          photos={photoData}
+          likedPhotos={likedPhotos}
           toggleFavourite={updateToFavPhotoIds}
           onPhotoSelect={onPhotoSelect}
         />
