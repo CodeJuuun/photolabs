@@ -7,7 +7,7 @@ export const ACTIONS = {
   DISPLAY_PHOTO_DETAILS: 'DISPLAY_PHOTO_DETAILS',
   SET_PHOTO_BY_TOPIC: 'SET_PHOTO_BY_TOPIC',
 };
-//-----------------------------------------------------------------------------------------
+
 export function reducer(state, action) {
 
 
