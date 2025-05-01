@@ -3,7 +3,7 @@ import PhotoFavButton from "./PhotoFavButton";
 
 const PhotoListItem = ({ photo, isFavourite, toggleFavourite, onPhotoSelect }) => {
   const { username, profile, imageSource, location, id } = photo;
-  // console.log(imageSource)
+
   const handleOpenModal = () => {
     onPhotoSelect(photo);
   };
